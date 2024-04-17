@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS abstract; 
-
-CREATE DATABASE abstract;
-
-USE abstract;
-
 INSERT INTO abstract (abstractID, title, abstract)
 VALUES (1, "Building a Growth Mindset Toolkit as a Means Toward
 Developing a Growth Mindset for Faculty Interactions with
