@@ -1,21 +1,20 @@
 USE faculty_matcher;
 
 INSERT INTO account (userID, username, password, userType)
-VALUES  (101, "jrhicsa","123456", faculty),
-        (102, "dan","123456", faculty),
-        (103, "erik100","123456", faculty),
-        (104, "andy368","123456", faculty),
-        (105, "sam17","123456", faculty),
-        (106, "andy111","123456", faculty),
-        (107, "Gary142","123456", faculty),
-        (208, "nan13","123456", student),
-        (209, "abbie123","123456", student),
-        (210, "james11","123456", student),
-        (211, "smary_guy585","123456", student),
-        (212, "jacob777","123456", student),
-        (213, "jas55","123456", student),
-        (214, "ty123","123456", student);
-
+VALUES  (101, "jrhicsa","123456", "faculty"),
+        (102, "dan","123456", "faculty"),
+        (103, "erik100","123456", "faculty"),
+        (104, "andy368","123456", "faculty"),
+        (105, "sam17","123456", "faculty"),
+        (106, "andy111","123456", "faculty"),
+        (107, "Gary142","123456", "faculty"),
+        (208, "nan13","123456", "student"),
+        (209, "abbie123","123456", "student"),
+        (210, "james11","123456", "student"),
+        (211, "smary_guy585","123456", "student"),
+        (212, "jacob777","123456", "student"),
+        (213, "jas55","123456", "student"),
+        (214, "ty123","123456", "student");
 
 INSERT INTO faculty (userID, firstName, lastName, email, office, department)
 VALUES (101, "James","Habermas", "jrhicsa@rit.edu", 'GOL-2556', 'IS'),
@@ -26,7 +25,14 @@ VALUES (101, "James","Habermas", "jrhicsa@rit.edu", 'GOL-2556', 'IS'),
        (106, "Andrew","Dimock", "awdics@rit.edu", 'GOL-1005', 'IS'),
        (107, "Garret","Arcoraci", "gpavks@rit.edu", 'GOL-1006', 'IS');
 
-INSERT INTO student (userID, firstName, lastName, email, majorCode)
+INSERT INTO majors (majorCode, major, majorLevel)
+VALUES (4523, "Web & Mobile Computing","Undergraduate"),
+       (1634, "Computing & Information Technologies","Undergraduate"),
+       (9063, "Networking & Systems Administration","Undergraduate"),
+       (8012, "Information Sciences & Technologies","Graduate"),
+       (9513, "Human Computer Interaction","Graduate");
+
+INSERT INTO students (userID, firstName, lastName, email, majorCode)
 VALUES  (208, "Nanny","Li", "nitroacid@rit.edu", 4523),
         (209, "Abbie","Woo", "Abbiewoo@rit.edu", 1634),
         (210, "James","Olive", "JamesOlive@rit.edu", 1634),
@@ -34,13 +40,6 @@ VALUES  (208, "Nanny","Li", "nitroacid@rit.edu", 4523),
         (212, "Jacob","Flaa", "jacobflaa@rit.edu", 9063),
         (213, "Jasmine","Chen", "jasinerice@rit.edu", 8012),
         (214, "Ty","Lee", "tylee@rit.edu", 9513);
-
-INSERT INTO majors (majorCode, major, majorLevel)
-VALUES (4523, "Web & Mobile Computing","Undergraduate"),
-       (1634, "Computing & Information Technologies","Undergraduate"),
-       (9063, "Networking & Systems Administration","Undergraduate"),
-       (8012, "Information Sciences & Technologies","Graduate"),
-       (9513, "Human Computer Interaction","Graduate");
 
 INSERT INTO interests (interestID, domain, interest)
 VALUES  (1, 'Software Engineering','Web development'),
@@ -136,7 +135,21 @@ accessibility education, supporting students in placing a higher value on the im
 of creating accessible software. Created labs and project materials are publicly
 available on the project website: http://all.rit.edu");
 
+INSERT INTO faculty_abstract_associations (facultyID, abstractID)
+VALUES (102, 1),
+       (103, 2),
+       (104, 3),
+       (105, 4);
 
+INSERT INTO user_interest_associations (userID, interestID)
+VALUES (102, 7),
+       (103, 2),
+       (104, 3),
+       (105, 4),
+       (208, 1),
+       (208, 2),
+       (209, 3),
+       (209, 4);
 
 
 
