@@ -301,6 +301,7 @@ public class MySQLDatabase
             System.out.println("Possible Causes: ");
             System.out.println(" 1 - Information was entered incorrectly.");
             System.out.println(" 2 - The interest ID you entered does not exist");
+            System.out.println(" 3 - You already have this interest in your profile");
            //sqle.printStackTrace();
            return 0;
        } 
@@ -310,6 +311,7 @@ public class MySQLDatabase
             System.out.println("Possible Causes: ");
             System.out.println(" 1 - Information was entered incorrectly.");
             System.out.println(" 2 - The interest ID you entered does not exist");
+            System.out.println(" 3 - You already have this interest in your profile");
            //e.printStackTrace();
            return 0;
        }
@@ -392,6 +394,7 @@ public class MySQLDatabase
             System.out.println("Possible Causes: ");
             System.out.println(" 1 - Information was entered incorrectly.");
             System.out.println(" 2 - The abstract ID you entered does not exist");
+            System.out.println(" 3 - You already have this abstract in your profile");
            //sqle.printStackTrace();
            return 0;
        } 
@@ -401,6 +404,7 @@ public class MySQLDatabase
             System.out.println("Possible Causes: ");
             System.out.println(" 1 - Information was entered incorrectly.");
             System.out.println(" 2 - The abstract ID you entered does not exist");
+            System.out.println(" 3 - You already have this abstract in your profile");
            //e.printStackTrace();
            return 0;
        }
@@ -502,6 +506,11 @@ public class MySQLDatabase
       return id;
    }
    
+   /**
+     * getAllIntrests - Gets all interests
+     *
+   */
+   
    public void getAllIntrests()
    {
       //System.out.println("-----GETTING ALL INTRESTS-----");
@@ -535,6 +544,11 @@ public class MySQLDatabase
          //e.printStackTrace();
       }
    }
+   
+   /**
+     * getAllAbstracts - Gets all abstracts in the system
+     *
+   */
    
    public void getAllAbstracts()
    {
@@ -571,6 +585,10 @@ public class MySQLDatabase
       }
    }
    
+   /**
+     * getAllMajors - Gets all majors in the system.
+   */
+   
    public void getAllMajors()
    {
       try
@@ -606,7 +624,11 @@ public class MySQLDatabase
    }
 
 
-   
+   /**
+     * getUserIntrests - Gets interests based on userID
+     *
+     * @param userID            - userID of user to get interests of.
+   */
    public void getUserIntrests(int userID)
    {
       System.out.println("-----GETTING ALL INTRESTS-----");
@@ -644,6 +666,12 @@ public class MySQLDatabase
       }
    }
    
+   
+   /**
+     * getUserAbstracts - Gets faculty abstracts based on facultyID (userID)
+     *
+     * @param userID            - userID of user to get abstracts of.
+   */
    public void getUserAbstracts(int userID)
    {
       System.out.println("-----GETTING ALL ABSTRACTS-----");
@@ -686,7 +714,11 @@ public class MySQLDatabase
    }
 
 
-   
+   /**
+     * getUserIntrests - Matches faculty with students based on userID (of student)
+     *
+     * @param userID - userID of student to match faculty for.
+   */
    public void matchInterests(int userID)
    {
       try
@@ -747,6 +779,11 @@ public class MySQLDatabase
       }
    }
    
+   /**
+     * matchInterestsFaculty - Matches students with faculty based on userID (of faculty)
+     *
+     * @param userID - userID of faculty to match students for.
+   */
    public void matchInterestsFaculty(int userID)
    {
       try
@@ -787,8 +824,8 @@ public class MySQLDatabase
       {
          System.out.println("SQL ERROR");
          System.out.println("MATCH FAILED!!!!");
-         System.out.println("ERROR MESSAGE IS -> "+sqle);
-         sqle.printStackTrace();
+         //System.out.println("ERROR MESSAGE IS -> "+sqle);
+         //sqle.printStackTrace();
 
       }
       catch(Exception e)
@@ -800,8 +837,67 @@ public class MySQLDatabase
 
       }
    }
-
    
+   /**
+     * getFacultyAbstracts - Gets faculty abstracts.
+     *
+     * @param userID - userID of faculty.
+   */
+   public void getFacultyAbstracts(int userID)
+   {
+      try
+      {
+         ResultSet rs;
+         //System.out.println(userID);
+         String sql = "{CALL get_abstracts(?)}";
+      
+         CallableStatement stmt = conn.prepareCall(sql);
+         stmt.setInt(1, userID);
+
+         rs = stmt.executeQuery();
+         boolean found = false;
+         while(rs.next())
+         {
+            found = true;
+            String title = rs.getString(1);
+            String _abstract = rs.getString(2);
+            
+            System.out.println("");
+            System.out.println("================================================");
+            System.out.println("\n"+title+"\n\n"+_abstract);
+            System.out.println("================================================");
+         }
+         
+         if(found == false)
+         {
+            System.out.println("No Abstracts found :(\n");
+         }
+      }
+      catch(SQLException sqle)
+      {
+         System.out.println("SQL ERROR");
+         System.out.println("MATCH FAILED!!!!");
+         //System.out.println("ERROR MESSAGE IS -> "+sqle);
+         //sqle.printStackTrace();
+
+      }
+      catch(Exception e)
+      {
+         System.out.println("OPERATION FAILED!!!!");
+         System.out.println("OPERATION FAILED");
+         System.out.println("Unable to get Abstracts - Ensure that you entered the correct FacultyID");
+         System.out.println("Error occured in  getFacultyAbstracts method");
+         //System.out.println("ERROR MESSAGE is -> "+e);
+         //e.printStackTrace();
+
+      }
+   }
+
+   /**
+     * matchAbstracts - Gets faculty matches for students based on abstracts.
+     *
+     * @param userID - userID of student.
+   */
    public void matchAbstracts(int userID)
    {
       try
@@ -818,17 +914,19 @@ public class MySQLDatabase
          while(rs.next())
          {
             found = true;
-            String fname = rs.getString(1);
-            String lname = rs.getString(2);
-            String email = rs.getString(3);
-            String institution = rs.getString(4);
-            String office = rs.getString(5);
-            String department = rs.getString(6);
-            String domain = rs.getString(7);
-            String interest  = rs.getString(8);
+            int fid = rs.getInt(1);
+            String fname = rs.getString(2);
+            String lname = rs.getString(3);
+            String email = rs.getString(4);
+            String institution = rs.getString(5);
+            String office = rs.getString(6);
+            String department = rs.getString(7);
+            String domain = rs.getString(8);
+            String interest  = rs.getString(9);
             
             System.out.println("");
             System.out.println("================================================");
+            System.out.println("Faculty ID: "+fid);
             System.out.println("Name: "+fname+" "+lname);
             System.out.println("Email: "+email);
             System.out.println("Institution: "+institution);

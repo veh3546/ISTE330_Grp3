@@ -1,0 +1,85 @@
+SETUP INSTRUCTIONS:
+
+- Database Setup
+	To setup the database first source 'faculty_matcher_database.sql', then source 'fill_faculty_matcher_database.sql'.
+	faculty_matcher_database.sql creates the database and adds the tables. It also creates the stored procedures. 
+
+- Program Setup
+	The program consists of three classes 'MySQLDatabase', 'Presentation' and 'GetInput'.
+	MySQLDatabase is our data layer which connects to the database and manages all interactions.
+	Presentation is our presentaion layer, it contains the main method that is used to run the program.
+	GetInput (by Prof. Habermas) deals with getting input from the user via the command line.
+
+PROGRAM INSTRUCTIONS:
+
+- Connecting to the database:
+	The program first prompts users to connect to the database by providing the relevant credentials.
+	Defaults are used when the user presses enter.
+
+SETUP INSTRUCTIONS:
+
+- Database Setup
+	To setup the database first source 'faculty_matcher_database.sql', then source 'fill_faculty_matcher_database.sql'.
+	faculty_matcher_database.sql creates the database and adds the tables. It also creates the stored procedures. 
+
+- Program Setup
+	The program consists of three classes 'MySQLDatabase', 'Presentation' and 'GetInput'.
+	MySQLDatabase is our data layer which connects to the database and manages all interactions.
+	Presentation is our presentation layer, it contains the main method that is used to run the program.
+	GetInput (by Prof. Habermas) deals with getting input from the user via the command line.
+
+PROGRAM INSTRUCTIONS:
+
+- Connecting to the database:
+	The program first prompts users to connect to the database by providing the relevant credentials.
+	Defaults are used when the user presses enter.
+
+- Choosing your user:
+	Enter the numeric option to choose your user type (Student or Faculty).
+
+- Students:
+	Students are given the following options:
+	[1] Login - Log in using existing account. 
+	(Grader: You can look at 'fill_faculty_matcher_database.sql' and find and existing STUDENT account to log in as, check 'students' and 'accounts' tables)
+	[2] Create Account - Create a new account. 
+	[0] Exit - Close the program
+	
+	Once logged in students get to:
+	[1] Find Faculty Match - Find a faculty match based on intrests and abstracts.
+	[2] Add Interest - Add an existing intrest to your profile.
+	[3] View My Intrests - See what your interests are. 
+	[4] Create Interest - Create new interests in the system (If you can't find your interest in the existing interests)
+	[5] Find Faculty Abstract - One you match with a faculty and know their ID, you can search for their abstracts.
+	[0] Logout & Go to Main Menu - Logout to the main student menu.
+
+- Faculty:
+	Faculty are given the following options:
+	[1] Login - Log in using existing account.
+	(Grader: You can look at 'fill_faculty_matcher_database.sql' and find and existing FACULTY account to log in as, check 'faculty' and 'accounts' tables)
+	[2] Create Account - Create a new account. 
+	[0] Exit - Close the program
+
+	Once logged in faculty get to:
+	[1] Find Student Match - Find a student match based on interests.
+	[2] Add Abstract - Add an existing abstract to your profile.
+	[3] View My Abstracts - View a list of your abstracts.
+	[4] Create Abstract - Create and abstract.
+	[5] Add Interest - Add an existing interest to your profile.
+	[6] View My Interests - See what your interests are. 
+	[7] Create Interest - Create new interests in the system (If you can't find your interest in the existing interests)
+	[0] Logout & Go to Main Menu - Logout to the main faculty menu.
+
+General Notes: 
+	- If you enter the wrong data (e.g. String instead of number) you will be put in an infinite loop until you provide the correct input type. 
+	  This feature is inherited from the 'GetInput' class.
+	
+	- Relevant Error messages are sent when (for example) a key clash occurs, or an invalid ID is provided.
+
+Notes for Grader:
+	- Best Student User to demo with:
+		username: abbie123
+		password: 123456
+
+	- Best Faculty User to demo with:
+		username: andy368
+		password: 123456

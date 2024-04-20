@@ -16,14 +16,14 @@ VALUES  (101, "jrhicsa","123456", "faculty"),
         (213, "jas55","123456", "student"),
         (214, "ty123","123456", "student");
 
-INSERT INTO faculty (userID, firstName, lastName, email, office, department)
-VALUES (101, "James","Habermas", "jrhicsa@rit.edu", 'GOL-2556', 'IS'),
-       (102, "Dan","Dogaard", "dan.bogaard@rit.edu", 'GOL-1001', 'IS'),
-       (103, "Erik","Golen", "efgics@rit.edu", 'GOL-1002', 'IS'),
-       (104, "Andrew","Meneely", "andy.meneely@rit.edu", 'GOL-1003', 'SE'),
-       (105, "Samuel","MalacMalachowsky", "samvse@rit.edu", 'GOL-1004', 'SE'),
-       (106, "Andrew","Dimock", "awdics@rit.edu", 'GOL-1005', 'IS'),
-       (107, "Garret","Arcoraci", "gpavks@rit.edu", 'GOL-1006', 'IS');
+INSERT INTO faculty (userID, firstName, lastName, email, institution, office, department)
+VALUES (101, "James","Habermas", "jrhicsa@rit.edu", "RIT", 'GOL-2556', 'IS'),
+       (102, "Dan","Dogaard", "dan.bogaard@rit.edu", "RIT", 'GOL-1001', 'IS'),
+       (103, "Erik","Golen", "efgics@rit.edu", "RIT", 'GOL-1002', 'IS'),
+       (104, "Andrew","Meneely", "andy.meneely@rit.edu", "RIT", 'GOL-1003', 'SE'),
+       (105, "Samuel","MalacMalachowsky", "samvse@rit.edu", "RIT", 'GOL-1004', 'SE'),
+       (106, "Andrew","Dimock", "awdics@rit.edu", "RIT", 'GOL-1005', 'IS'),
+       (107, "Garret","Arcoraci", "gpavks@rit.edu", "RIT", 'GOL-1006', 'IS');
 
 INSERT INTO majors (majorCode, major, majorLevel)
 VALUES (4523, "Web & Mobile Computing","Undergraduate"),
@@ -48,7 +48,8 @@ VALUES  (1, 'Software Engineering','Web development'),
         (4, 'Databases','Document Oriented Databases'),
         (5, 'Cyber-Security','Encryption'),
         (6, 'Software Engineering','2D Game Design'),
-        (7, 'Software Engineering','Embedded Systems');
+        (7, 'Software Engineering','Embedded Systems'),
+        (8, 'Education','Accessibility Education');
 
 INSERT INTO abstract (abstractID, title, abstract)
 VALUES (1, "Building a Growth Mindset Toolkit as a Means Toward
@@ -139,17 +140,20 @@ INSERT INTO faculty_abstract_associations (facultyID, abstractID)
 VALUES (102, 1),
        (103, 2),
        (104, 3),
-       (105, 4);
+       (105, 4),
+       (104, 4);
 
 INSERT INTO user_interest_associations (userID, interestID)
 VALUES (102, 7),
        (103, 2),
        (104, 3),
        (105, 4),
+       (105, 3),
        (208, 1),
        (208, 2),
        (209, 3),
-       (209, 4);
+       (209, 4),
+       (209, 8);
 
 
 

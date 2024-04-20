@@ -188,6 +188,7 @@ public class Presentation
       System.out.println("What type of user are you?");
       System.out.println("[1] Student");
       System.out.println("[2] Faculty");
+      System.out.print("Enter Option ---------> ");
       int typeOption = GetInput.readLineInt();
       
       switch(typeOption) 
@@ -215,7 +216,7 @@ public class Presentation
          System.out.println("[1] Login");
          System.out.println("[2] Create Account");
          System.out.println("[0] Exit");
-         
+         System.out.print("Enter Option ---------> ");
          int option = GetInput.readLineInt();
          
          switch(option) 
@@ -254,7 +255,7 @@ public class Presentation
          System.out.println("[1] Login");
          System.out.println("[2] Create Account");
          System.out.println("[0] Exit");
-         
+         System.out.print("Enter Option ---------> ");
          int option = GetInput.readLineInt();
          
          switch(option) 
@@ -355,6 +356,7 @@ public class Presentation
          System.out.println("[2] Add Interest");
          System.out.println("[3] View My Intrests");
          System.out.println("[4] Create Interest");
+         System.out.println("[5] Find Faculty Abstract");
          System.out.println("[0] Logout & Go to Main Menu");
          System.out.print("Enter Option ---------> ");
          int option = GetInput.readLineInt();
@@ -376,6 +378,10 @@ public class Presentation
             case 4:
                System.out.println("\nCreate a new Intrest\n");
                promptCreateInterest();
+               break;
+             case 5:
+               System.out.println("\nFind Faculty Abstract\n");
+               promptGetFacultyAbstracts();
                break;
             case 0:
                System.out.println("Logging Out...\n");
@@ -441,6 +447,15 @@ public class Presentation
            
       msqldb.addAbstract(loggedUser, abstractID);
 
+   }
+   
+   public void promptGetFacultyAbstracts()
+   {
+      System.out.print("\n");
+      System.out.print("Please enter FacultyID ---------> ");
+      int fid = GetInput.readLineInt();
+           
+      msqldb.getFacultyAbstracts(fid);
    }
    
    public void promptClose()
