@@ -1,32 +1,15 @@
 SETUP INSTRUCTIONS:
 
 - Database Setup
-	To setup the database first source 'faculty_matcher_database.sql', then source 'fill_faculty_matcher_database.sql'.
+	To setup the database, first source 'faculty_matcher_database.sql', then source 'fill_faculty_matcher_database.sql'.
 	faculty_matcher_database.sql creates the database and adds the tables. It also creates the stored procedures. 
+	fill_faculty_matcher_database.sql adds data to the tables. (They need to be sourced in the order specified).
 
 - Program Setup
 	The program consists of three classes 'MySQLDatabase', 'Presentation' and 'GetInput'.
 	MySQLDatabase is our data layer which connects to the database and manages all interactions.
+	GetInput (by Prof. Habermas) deals with getting input from the user via the command line.
 	Presentation is our presentaion layer, it contains the main method that is used to run the program.
-	GetInput (by Prof. Habermas) deals with getting input from the user via the command line.
-
-PROGRAM INSTRUCTIONS:
-
-- Connecting to the database:
-	The program first prompts users to connect to the database by providing the relevant credentials.
-	Defaults are used when the user presses enter.
-
-SETUP INSTRUCTIONS:
-
-- Database Setup
-	To setup the database first source 'faculty_matcher_database.sql', then source 'fill_faculty_matcher_database.sql'.
-	faculty_matcher_database.sql creates the database and adds the tables. It also creates the stored procedures. 
-
-- Program Setup
-	The program consists of three classes 'MySQLDatabase', 'Presentation' and 'GetInput'.
-	MySQLDatabase is our data layer which connects to the database and manages all interactions.
-	Presentation is our presentation layer, it contains the main method that is used to run the program.
-	GetInput (by Prof. Habermas) deals with getting input from the user via the command line.
 
 PROGRAM INSTRUCTIONS:
 
